@@ -36,5 +36,29 @@ class Profile(models.Model):
     def dele_profile(self):
         self.delete() 
 
+    @classmethod
+    def update_profile(cls,id):
+        profile = cls.objects.filter(id=id).update(id=id)
+        return profile     
+
     def __str__(self):
         return self.bio            
+
+class Comment(models.Model):
+    comment = models.CharField(max_length =6000)
+
+    def save_comment(self):
+        self.save()
+
+    def dele_comment(self):
+        self.delete() 
+
+    @classmethod
+    def update_comment(cls,id):
+        comment = cls.objects.filter(id=id).update(id=id)
+        return comment     
+
+    def __str__(self):
+        return self.comment         
+
+        
