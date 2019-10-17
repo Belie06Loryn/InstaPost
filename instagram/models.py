@@ -25,3 +25,16 @@ class Foto(models.Model):
     def update_pic(cls,id):
         imaje = cls.objects.filter(id=id).update(id=id)
         return imaje    
+
+class Profile(models.Model):
+    image = models.ImageField(upload_to = 'profiles/',null=True)
+    bio = models.CharField(max_length =6000)
+
+    def save_profile(self):
+        self.save()
+
+    def dele_profile(self):
+        self.delete() 
+
+    def __str__(self):
+        return self.bio            
