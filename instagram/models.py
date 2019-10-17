@@ -61,4 +61,9 @@ class Comment(models.Model):
     def __str__(self):
         return self.comment         
 
-        
+class Follower(models.Model):
+    user = models.ForeignKey(User)
+    profile = models.ForeignKey(Profile)
+
+    def save_follower(self):
+        self.save()               
