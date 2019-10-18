@@ -5,7 +5,48 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <style>
+.profile {
+    max-width: 200px;
+    max-height: 200px;
+    display: block;
+}
+
+#fil {
+    display: none;
+}
+.circle {
+    border-radius: 1000px !important;
+    overflow: hidden;
+    width: 190px;
+    height: 190px;
+    border: 8px solid rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: 72px;
+}
+img {
+    width: 100%;
+    height: auto;
+}
+.pimag {
+  position: absolute;
+  top: 167px;
+  right: 160px;
+  color: #666666;
+  transition:(.175, .885, .32, 1.275);
+}
+.pimag :hover {
+  transition:(.175, .885, .32, 1.275);
+}
+#pick {
+  font-size: 1.2em;
+}
+
+.pick:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  color: #999;
+}
 .hr{ 
   display: block;
   margin-left:200px;
@@ -24,6 +65,26 @@ footer{
   font-size: 10px;
 }
 </style>
+<script>
+$(document).ready(function() {
+    var readURL = function(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('.profile').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $(".file").on('change', function(){
+        readURL(this);
+    });
+    
+    $("#pick").on('click', function() {
+       $(".file").click();
+    });
+});
+</script>
 <body>
 <div class="container" style="width: 60%;">
         <div class="row m-y-2">
@@ -37,12 +98,13 @@ footer{
                 </div>
             </div>
             <div class="col-lg-4 pull-lg-8 text-xs-center">
-                    <img src="//placehold.it/150" class="m-x-auto img-fluid img-circle" alt="avatar" style="border-radius: 50%;"/>
-                    <h6 class="m-t-2">Upload a picture</h6>
-                    <label class="custom-file">
-                      <input type="file" id="file" type="file" class="custom-file-input">
-                      <span class="btn btn-primary" >Choose file</span>
-                    </label>
+                    <div class="circle">
+                        <img class="profile" src="http://cdn.cutestpaw.com/wp-content/uploads/2012/07/l-Wittle-puppy-yawning.jpg">
+                    </div>
+                    <div class="pimag">
+                        <i class="fa fa-camera" id="pick"></i>
+                        <input class="file" type="file" id="fil">
+                    </div>
             </div>
             <div class="col-lg-8 push-lg-4 personal-info">
                  <form role="form">
