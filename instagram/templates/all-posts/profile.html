@@ -1,0 +1,94 @@
+{% extends 'all-posts/base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
+<style>
+.hr{ 
+  display: block;
+  margin-left:200px;
+  margin-right: 200px;
+  border-style: inset;
+  border-width: 1px;
+} 
+footer{
+  /* position: fixed; */
+  background-color:transparent;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color:rgb(8, 8, 8);
+  text-align: center;
+  font-size: 10px;
+}
+</style>
+<body>
+<div class="container" style="width: 60%;">
+        <div class="row m-y-2">
+            <!-- edit form column -->
+            <div class="col-lg-4">
+                <h2>Edit Profile</h2>
+            </div>
+            <div class="col-lg-8">
+                <div class="alert alert-info alert-dismissable"> <a class="panel-close close" data-dismiss="alert">×</a>
+                 <strong>Fill This Form Please!</strong>
+                </div>
+            </div>
+            <div class="col-lg-4 pull-lg-8 text-xs-center">
+                    <img src="//placehold.it/150" class="m-x-auto img-fluid img-circle" alt="avatar" style="border-radius: 50%;"/>
+                    <h6 class="m-t-2">Upload a picture</h6>
+                    <label class="custom-file">
+                      <input type="file" id="file" type="file" class="custom-file-input">
+                      <span class="btn btn-primary" >Choose file</span>
+                    </label>
+            </div>
+            <div class="col-lg-8 push-lg-4 personal-info">
+                 <form role="form">
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Name</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="text" value="name" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">UserName</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="text" value="username" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="email" value="email@gmail.com" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Bio</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="url" value="bio" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label"></label>
+                        <div class="col-lg-9">
+                            <input type="reset" class="btn btn-secondary" value="Cancel" />
+                            <input type="button" class="btn btn-primary" value="Save Changes" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr />
+<br><br><br><br>
+<div>
+    <footer>
+        <hr class="hr">
+        <p>@2019 by ____ProDevloper.Proudly Created</p>
+    </footer>
+</div>   
+</body>
+
+{% endblock %}    
