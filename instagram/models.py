@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from tinymce.models import HTMLField
 # Create your models here.
 class Profile(models.Model):
     image = models.ImageField(upload_to = 'profiles/',null=True)
@@ -16,10 +16,20 @@ class Profile(models.Model):
         self.delete() 
 
     @classmethod
-    def update_profile(cls,id):
-        profile = cls.objects.filter(id=id).update(id=id)
-        return profile     
+    def update_profile(cls,id,bio):
+        profile = cls.objects.filter(id=id).update(bio=bio)
+        return profile  
 
+    @classmethod
+    def profile_by_id(cls,id):
+        found = cls.objects.filter(id = id)
+        return found       
+
+    @classmethod
+    def find_profile(cls,search):
+        found = cls.objects.filter(username__username__icontains=search)
+        return found
+    
     def __str__(self):
         return self.bio            
 
@@ -44,7 +54,7 @@ class Comment(models.Model):
 class Foto(models.Model):
     image = models.ImageField(upload_to = 'photos/',null=True)
     name = models.CharField(max_length =40)
-    caption = models.TextField(max_length =6000)
+    caption = HTMLField(null=True)
     like = models.TextField(max_length =6000)
     profile = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
     comments = models.ForeignKey(Comment ,null=True)
