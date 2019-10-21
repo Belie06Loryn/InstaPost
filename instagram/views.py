@@ -28,9 +28,9 @@ def profile(request):
 @login_required(login_url='/accounts/login/')
 def ownerprofile(request,username=None):
     current_user = request.user
-    ifoto = Foto.objects.filter(profile=current_user).first()
+    ifoto = Foto.objects.filter(profile=current_user)
     if not username:
-        username = request.user.username
+        username = request.user
         ifotos = Foto.objects.filter(name=username)
     return render(request, 'all-posts/owner.html',{"ifoto":ifoto,"current_user":current_user})       
 
