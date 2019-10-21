@@ -7,7 +7,7 @@
     <div class="col-md-8">
     <div class="content-section">
         <div class="media">
-            <img src="{{ user.ownerprofile.image.url }}" class="rounded-circle profile-img">
+            <img src="{{ ownerprofile.image.url }}" class="rounded-circle profile-img">
             <div class="media-body">
                 <div class="ml-custom">
                 <div class="display">
@@ -19,7 +19,7 @@
             </p>
             </div>
                 <p class="text-secondary"> Email: {{ user.email }}</p>
-                <p class="text-secondary">Bio: {{ user.ownerprofile.bio }}</p>
+                <p class="text-secondary">Bio: {{ user.bio }}</p>
             </div>
             </div>
         </div>
@@ -28,17 +28,12 @@
 <div class="col-md-2"></div>
 </div><hr>
 <div class="row">
-    {% if ifoto %}
         {% for image in ifoto %}
         <div class="col-md-4">
-            <a href="{% url 'ownerprofile' image.id %}">
-            <img src="{{ image.image.url }}" id="profile-images">
+            <img src="{{ image.image.url }}" id="profile-images" style="width: 200px; height: 270px;">
         </a>
         </div>
         {% endfor %}
-    {% else %}
-        <h2 style="text-align: center;">No Post</h2>
-    {% endif %}
 </div>
 </div>
 
