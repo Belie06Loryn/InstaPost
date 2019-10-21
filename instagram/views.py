@@ -15,25 +15,26 @@ def page(request):
 def profile(request):
     current_user = request.user
     if request.method == 'POST':
-        form = ProfileForm(request.POST,request.FILES)
-        if form.is_valid():
+        form = ProfileForm(request.POST,request.FILES,instance=request.user)
+        if form.is_valid() and upform.is_valid():
             profile = form.save(commit=False)
             profile.user= current_user
             profile.save()
         return redirect('ownerprofile')
     else:
-        form =ProfileForm
+        form =ProfileForm(instance=request.user)
     return render(request, 'all-posts/profile.html', {"form": form})       
 
 @login_required(login_url='/accounts/login/')
 def ownerprofile(request,user=None):
     current_user = request.user
     ifoto = Foto.objects.all()
+    profile = Profile.objects.all()
     foto = Foto.objects.filter(profile=current_user)
     if not user:
         user = request.user
         ifotos = Foto.objects.filter(name=user)
-    return render(request, 'all-posts/owner.html',locals(),{"foto":foto,"ifoto":ifoto,"current_user":current_user})       
+    return render(request, 'all-posts/owner.html',locals(),{"profile":profile,"foto":foto,"ifoto":ifoto,"current_user":current_user})       
 
 @login_required(login_url='/accounts/login/')
 def post(request):

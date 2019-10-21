@@ -6,23 +6,25 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
     <div class="content-section">
+        {% for profile in profile %}
+        {% if user %}
         <div class="media">
-            <img src="{{ ownerprofile.image.url }}" class="rounded-circle profile-img">
+            <img src="{{ profile.image.url }}" class="rounded-circle profile-img" style="width: 80px;height: 80px;">
             <div class="media-body">
                 <div class="ml-custom">
                 <div class="display">
                 <p class="custom-fontsize">{{ user.username }}
-                {% if current_user.ownerprofile == user.ownerprofile %}
+                {% if current_user.profile == user.profile %}
                     <a href="{% url 'profile' %}" ><button class="btn btn-outline-primary">Edit Profile</button></a>
                 {% endif %}
                 <a class="fa fa-sun-o" aria-hidden="true"  data-toggle="modal" data-target="#exampleModalCenter"></a>
             </p>
             </div>
                 <p class="text-secondary"> Email: {{ user.email }}</p>
-                <p class="text-secondary">Bio: {{ user.bio }}</p>
+                <p class="text-secondary">Bio: {{ profile.bio }}</p>
             </div>
             </div>
-        </div>
+        </div>{% endif %}{% endfor %}
     </div>
 </div>
 <div class="col-md-2"></div>
