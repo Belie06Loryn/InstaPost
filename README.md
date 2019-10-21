@@ -4,10 +4,18 @@
 https://github.com/Belie06Loryn
 
 
+### Set-up and Installation
+- Clone the Repo using this command: cd git clone  [https://github.com/Belie06Loryn/InstaPost.git] $$ cd [InstaPost]
+- Install python 3.6
+- Install Python 3.6.5 2.Django 1.11
+- Create Environment [python3.6 -m venv --without-pip virtual] and activate   it [source virtual/bin/activate]
+- Run python3.6 manage.py test personal
+- Run python3.6 manage.py runserver 
+- Access the application through `http://127.0.0.1:8000/`
 
 
-
-
+## Known bugs
+No known errors if found drop a message on my profile
 
 ## Technologies used
 
@@ -27,7 +35,7 @@ Tools that I have used:
 
 ## Live Demo
 
-The web app can be accessed from the following link []()
+The web app can be accessed from the following link [https://instagram26.herokuapp.com/accounts/login/?next=/](https://instagram26.herokuapp.com/accounts/login/?next=/)
 
 ## Support and contact details
 If you meet an issue,you have questions,an ideas or concerns.Just contact me on https://github.com/Belie06Loryn .
