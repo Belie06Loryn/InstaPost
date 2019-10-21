@@ -26,11 +26,13 @@ def profile(request):
     return render(request, 'all-posts/profile.html', {"form": form})       
 
 @login_required(login_url='/accounts/login/')
-def ownerprofile(request,id):
+def ownerprofile(request,username=None):
     current_user = request.user
-    user = Foto.objects.all()
-    ifoto = Foto.objects.profile_by_id(id=id)
-    return render(request, 'all-posts/owner.html', {"user": user,"usere":usere,"ifoto":ifoto,"current_user":current_user})       
+    ifoto = Foto.objects.filter(profile=current_user).first()
+    if not username:
+        username = request.user.username
+        ifotos = Foto.objects.filter(name=username)
+    return render(request, 'all-posts/owner.html',{"ifoto":ifoto,"current_user":current_user})       
 
 @login_required(login_url='/accounts/login/')
 def post(request):

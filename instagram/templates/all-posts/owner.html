@@ -3,10 +3,11 @@
 {% block content %}
 <div class="container">
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
     <div class="content-section">
         <div class="media">
-            <img src="{{ user.profile.profile_pic.url }}" alt="profile image" class="rounded-circle profile-img">
+            <img src="{{ ifoto.image.url }}" class="rounded-circle profile-img">
             <div class="media-body">
                 <div class="ml-custom">
                 <div class="display">
@@ -24,18 +25,19 @@
         </div>
     </div>
 </div>
+<div class="col-md-2"></div>
 </div><hr>
 <div class="row">
-    {% if images %}
-        {% for image in images %}
+    {% if ifoto %}
+        {% for image in ifoto %}
         <div class="col-md-4">
-            <a href="{% url 'image_detail' image.id %}">
-            <img src="{{ image.image.url }}" alt="{{ image.image_name }} image" id="profile-images">
+            <a href="{% url 'ownerprofile' image.id %}">
+            <img src="{{ image.image.url }}" id="profile-images">
         </a>
         </div>
         {% endfor %}
     {% else %}
-        <h2 class="text-center">This user has not uploaded any images yet!!</h2>
+        <h2 style="text-align: center;">No Post</h2>
     {% endif %}
 </div>
 </div>
@@ -47,7 +49,7 @@
 
             <div class="modal-body">
                 <div class="text-center">
-                    <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+                    <a class="dropdown-item" href="">Log out</a>
                 </div>
             </div>
             

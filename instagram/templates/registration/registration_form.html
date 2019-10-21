@@ -48,7 +48,7 @@ footer{
             {% csrf_token %}
             {% bootstrap_form form %}
             <div class="form-group">
-              <input type="submit" class="btn btn-primary btn-sm" value="Sign Up"><br>                Have an account? <a href="/accounts/login/">Log in</a>
+              <input type="submit" class="btn btn-primary btn-sm" value="Sign Up"><br>Have an account? <a href="/accounts/login/">Log in</a>  or Forgot <a href="/accounts/password/change">Password</a>
             </div>
 
             <input type="hidden" name="next" value="{{next}}">

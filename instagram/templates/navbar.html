@@ -81,6 +81,7 @@ input[type=text] {
           </a>
         </li>
       </ul>
+      {% if user.is_authenticated %}
       <ul class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item">
           <a class="nav-link waves-effect waves-light" href="{% url 'post'%}">
@@ -93,19 +94,24 @@ input[type=text] {
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-effect waves-light">
+          <a class="nav-link waves-effect waves-light" href="">
             <i class="fa fa-heart-o" aria-hidden="true"></i>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-effect waves-light" href="{%url 'profile'%}">
+          <a class="nav-link waves-effect waves-light" href="{% url 'ownerprofile'%}">
             <i class="fa fa-user-o" aria-hidden="true" ></i>
           </a>
         </li>
       </ul>
+      {% else %}
+      <li>
+        <a class='btn btn-default' href="/accounts/login">Login</a>
+      </li>
+
+      {% endif %}
     </div>
   </nav>
-  <!--/.Navbar -->
 </div>
 <hr>
 </body>
