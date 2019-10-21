@@ -8,22 +8,21 @@ from django.contrib import messages
 
 @login_required(login_url='/accounts/login/')
 def page(request):
-    return render(request,'all-posts/index.html',)
+    fotos = Foto.objects.all()
+    return render(request,'all-posts/index.html',{"fotos":fotos})
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
     current_user = request.user
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
+        form = ProfileForm(request.POST,request.FILES)
         if form.is_valid():
-            profile = form.save_profile(commit=False)
-            profile.username = current_user
-            profile.save_profile()
-            messages.success(request,f"You have Updated your Profile")
-        return redirect('owner')
-
+            profile = form.save(commit=False)
+            profile.user= current_user
+            profile.save()
+        return redirect('ownerprofile')
     else:
-        form = ProfileForm()
+        form =ProfileForm
     return render(request, 'all-posts/profile.html', {"form": form})       
 
 @login_required(login_url='/accounts/login/')

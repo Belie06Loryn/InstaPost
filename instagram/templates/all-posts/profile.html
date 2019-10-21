@@ -1,156 +1,63 @@
 {% extends 'all-posts/base.html' %}
 {% load bootstrap4 %}
+{% load staticfiles %}
 {% block content %}
 <!DOCTYPE html>
-<html>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+ <html>
+ 
+ <head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+   <title>New Post</title>
+   {{form.media}}
+ 
+ {% block styles %} {% bootstrap_css %}
+   <link rel="stylesheet" href="{% static 'css/insta.css' %}">
+   <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet"> {% endblock %}
+ 
+ </head>
 <style>
-.profile {
-    max-width: 200px;
-    max-height: 200px;
-    display: block;
-}
-
-#fil {
-    display: none;
-}
-.circle {
-    border-radius: 1000px !important;
-    overflow: hidden;
-    width: 190px;
-    height: 190px;
-    border: 8px solid rgba(255, 255, 255, 0.7);
-    position: absolute;
-    top: 72px;
-}
-img {
-    width: 100%;
-    height: auto;
-}
-.pimag {
-  position: absolute;
-  top: 167px;
-  right: 160px;
-  color: #666666;
-  transition:(.175, .885, .32, 1.275);
-}
-.pimag :hover {
-  transition:(.175, .885, .32, 1.275);
-}
-#pick {
-  font-size: 1.2em;
-}
-
-.pick:hover {
-  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
-  color: #999;
-}
-.hr{ 
-  display: block;
-  margin-left:200px;
-  margin-right: 200px;
-  border-style: inset;
-  border-width: 1px;
-} 
-footer{
-  /* position: fixed; */
-  background-color:transparent;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  color:rgb(8, 8, 8);
-  text-align: center;
-  font-size: 10px;
-}
+  .hr{ 
+      display: block;
+      margin-left:200px;
+      margin-right: 200px;
+      border-style: inset;
+      border-width: 1px;
+  } 
+  footer{
+      /* position: fixed; */
+      background-color:transparent;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      color:rgb(8, 8, 8);
+      text-align: center;
+      font-size: 10px;
+  }
 </style>
-<script>
-$(document).ready(function() {
-    var readURL = function(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('.profile').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    $(".file").on('change', function(){
-        readURL(this);
-    });
-    
-    $("#pick").on('click', function() {
-       $(".file").click();
-    });
-});
-</script>
 <body>
-<div class="container" style="width: 60%;" >
-        <div class="row m-y-2">
-            <!-- edit form column -->
-            <div class="col-lg-4">
-                <h2>Edit Profile</h2>
-            </div>
-            <div class="col-lg-8">
-                <div class="alert alert-info alert-dismissable"> <a class="panel-close close" data-dismiss="alert">×</a>
-                 <strong>Fill This Form Please!</strong>
-                </div>
-            </div>
-            <div class="col-lg-4 pull-lg-8 text-xs-center">
-                    <div class="circle">
-                        <img class="profile" src="http://cdn.cutestpaw.com/wp-content/uploads/2012/07/l-Wittle-puppy-yawning.jpg">
-                    </div>
-                    <div class="pimag">
-                        <i class="fa fa-camera" id="pick"></i>
-                        <input class="file" type="file" id="fil">
-                    </div>
-            </div>
-            <div class="col-lg-8 push-lg-4 personal-info">
-                 <form role="form">
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Name</label>
-                        <div class="col-lg-9">
-                            <input class="form-control" type="text" value="name" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">UserName</label>
-                        <div class="col-lg-9">
-                            <input class="form-control" type="text" value="username" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Email</label>
-                        <div class="col-lg-9">
-                            <input class="form-control" type="email" value="email@gmail.com" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Bio</label>
-                        <div class="col-lg-9">
-                            <input class="form-control" type="url" value="bio" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label"></label>
-                        <div class="col-lg-9">
-                            <input type="reset" class="btn btn-secondary" value="Cancel" />
-                            <input type="button" class="btn btn-primary"  href="{%url 'profile'%}" value="Save Changes" />
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <hr />
-<br><br><br><br>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4"><form  action="{% url 'profile'%}" method="post" enctype="multipart/form-data">
+      {%csrf_token%}
+  
+      {% bootstrap_form form%}
+      <input type="submit" class="btn btn-success btn-lg" value="Submit">
+    </form>
+  
+     {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %} {% endblock %}</div>
+  </div>
+<div class="col-md-4"></div>
+<br><br>
 <div>
     <footer>
         <hr class="hr">
         <p>@2019 by ____ProDevloper.Proudly Created</p>
     </footer>
-</div>   
+</div>  
 </body>
-
-{% endblock %}    
+</html>
+{% endblock %}

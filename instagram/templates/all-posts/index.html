@@ -5,6 +5,14 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
+<script>
+    $(function () {
+        $("#like").click(function () {
+            var input = $(this).find('.likes');
+            input.val(parseInt(input.val())+ 1);
+        });
+    });
+</script>
 <style>
 .hr{ 
     display: block;
@@ -26,8 +34,29 @@ footer{
 </style>
 <body>
 <div class="container">
-
-</div>    
+    <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        {% for fotos in fotos %}
+        <div class="card">
+        <div class="card-heading">
+            <div class="placing">
+            <a href="{% url 'ownerprofile' %}"><img src="{{ fotos.image.url }}"
+                alt="profile picture" style="width: 100%;"></a><br>
+            <a class="ml-3"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+            <a id="like"><i class="fa fa-heart" aria-hidden="true"></i>
+                <input class="likes" name="like" readonly="readonly" type="text" value="0"/>
+            </a>
+            <p class="ml-3">{{ fotos.caption }}</p><hr>
+            <div class="form-group">
+                <input type="text" class="form-control" id="comment" style="width: 80%;"><span><button class="btn btn-primary mb-2">Post</button></span>
+                
+            </div>
+            </div>
+        </div></div><br><br>    
+        {% endfor %}
+    </div>
+</div></div>
 <br><br><br>
 <div>
     <footer>
@@ -38,3 +67,4 @@ footer{
 </body>
 
 {% endblock %}
+</html>
