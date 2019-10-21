@@ -5,15 +5,20 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-    $(function () {
-        $("#like").click(function () {
-            var input = $(this).find('.likes');
-            input.val(parseInt(input.val())+ 1);
-        });
+     $(function () {
+      $(".like").click(function () {
+          var input = $(this).find('.likes');
+          input.val(parseInt(input.val())+ 1);
+      });
     });
 </script>
 <style>
+
+.like, .dislike {    
+  cursor: pointer;
+}
 .hr{ 
     display: block;
     margin-left:200px;
@@ -35,7 +40,7 @@ footer{
 <body>
 <div class="container">
     <div class="row">
-    <div class="col-md-3"></div>
+    <div class="col-md-2"></div>
     <div class="col-md-6">
         {% for fotos in fotos %}
         <div class="card">
@@ -44,21 +49,32 @@ footer{
             <a href="{% url 'ownerprofile' %}"><img src="{{ fotos.image.url }}"
                 alt="profile picture" style="width: 100%;"></a><br>
             <a class="ml-3"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
-            <a id="like"><i class="fa fa-heart" aria-hidden="true"></i>
-                <input class="likes" name="like" readonly="readonly" type="text" value="0"/>
-            </a>
-            <a class="dislike">
-                    <i class="fa fa-thumbs-o-down"></i> Dislike 
-                    <input class="dislikes"  name="dislike" readonly="readonly" type="text" value="0" />
-            </a>
+            <a class="like">
+                    <i class="fa fa-heart"></i>
+                    <input class="likes" name="like" readonly="readonly" type="text" value="0"/>
+                </a>
             <p class="ml-3"> {{ fotos.caption }} </p><hr>
             <div class="form-group">
-                <input type="text" class="form-control" id="comment" style="width: 80%;"><span><button class="btn btn-primary mb-2">Post</button></span>
+                <input type="text" class="ml-3 form-control" id="comment" style="width: 80%;"><span><button class="ml-3 btn btn-primary mb-2">Post</button></span>
                 
             </div>
             </div>
         </div></div><br><br>    
         {% endfor %}
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+            {% for profile in profile %}
+            <div class="media">
+                <img src="{{ profile.image.url }}" class="rounded-circle profile-img" style="width: 80px;height: 80px;">
+                <div class="media-body">
+                    <div class="ml-custom">
+                    <div class="display">
+                    <p class="custom-fontsize">{{ user.username }}</p>
+                </div>
+                </div>
+                </div>
+            </div>{% endfor %}
     </div>
 </div></div>
 <br><br><br>

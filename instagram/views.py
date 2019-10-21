@@ -2,14 +2,16 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404,HttpResponseRedirect
 from .models import Foto,Comment,Follower,Profile
 from django.contrib.auth.decorators import login_required
-from .forms import ProfileForm,PostForm
+from .forms import ProfileForm,PostForm,CommentForm
 from django.contrib import messages
 
 
 @login_required(login_url='/accounts/login/')
 def page(request):
     fotos = Foto.objects.all()
-    return render(request,'all-posts/index.html',{"fotos":fotos})
+    form = CommentForm()
+    profile = Profile.objects.all()
+    return render(request,'all-posts/index.html',{"fotos":fotos,"form":form,"profile":profile})
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
@@ -49,3 +51,26 @@ def post(request):
     else:
         form =PostForm
     return render(request, 'all-posts/post.html', {"form": form})
+
+def search_results(request):
+    if 'usere' in request.GET and request.GET['usere']:
+        search = request.GET.get("usere")
+        searched = Profile.find_profile(search)
+        user = Profile.objects.all()
+        
+        return render(request, 'all-posts/search.html',{"user":user,"usere":searched})   
+
+@login_required
+def Comment(request,pk):
+    current_user = request.user
+    image = Foto.objects.get(id=pk)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = current_user
+            comment.image = image
+            comment.save()
+            return redirect(Index)
+    else:       
+        return redirect(Index)

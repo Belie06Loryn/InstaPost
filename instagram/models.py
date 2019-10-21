@@ -36,7 +36,6 @@ class Profile(models.Model):
 class Comment(models.Model):
     comment = models.CharField(max_length =6000)
     user = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
-
     def save_comment(self):
         self.save()
 

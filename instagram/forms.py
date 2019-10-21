@@ -4,9 +4,14 @@ from django import forms
 class ProfileForm(forms.ModelForm):
   class Meta:
     model = Profile
-    fields = ['image','name','username','email','bio']
+    fields = ['image','username','bio']
 
 class PostForm(forms.ModelForm):
   class Meta:
     model = Foto
-    fields = ['image', 'caption']  
+    fields = ['image', 'caption']
+
+class CommentForm(forms.ModelForm):
+  class Meta:
+    model = Comment
+    exclude = ['user','image']  
