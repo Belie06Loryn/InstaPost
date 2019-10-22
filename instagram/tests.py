@@ -18,5 +18,12 @@ class ProfileTestClass(TestCase):
         profile= Profile.objects.all()
         self.assertTrue(len(profile)>=1) 
 
-    
+    def test_upd(self):
+        profile = Profile.objects.filter(id=1)
+        profile.update(image = 'Kam.jpeg', name ='Murki', email ='james@morischool.com',bio = 'hdefedf')
+        search = Profile.objects.filter(id=1)
+        self.assertNotEqual(search,'Kam.jpeg')
+
+                 
+        
  
