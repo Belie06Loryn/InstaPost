@@ -30,3 +30,14 @@ class ProfileTestClass(TestCase):
         self.assertTrue(len(profi)>=0)              
         
  
+class CommentTestClass(TestCase):
+
+    # Set up method
+    def setUp(self):
+        self.comment= Comment(comment = 'Fun')
+
+    # Testing  instance
+    def test_instance(self):
+        self.assertTrue(self.comment,Comment)    
+
+   
