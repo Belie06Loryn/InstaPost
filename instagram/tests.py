@@ -84,4 +84,11 @@ class FotoTestClass(TestCase):
         picture = Foto.objects.all()
         self.assertTrue(len(picture)>=1)
 
-  
+    def test_dele_pick(self):
+        self.new_photos= Foto(image = 'Jam.jpeg', name ='Muriuki', caption ='jamesmoringaschoolcom',like = "2", comments=self.new_comment)
+        self.new_photos.save_pic()
+        picture = self.new_photos.dele_pic()
+        delete = Foto.objects.all()
+        self.assertTrue(len(delete)>=0)   
+
+    
