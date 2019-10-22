@@ -24,6 +24,9 @@ class ProfileTestClass(TestCase):
         search = Profile.objects.filter(id=1)
         self.assertNotEqual(search,'Kam.jpeg')
 
-                 
+    def test_dele(self):
+        self.profile.save_profile()
+        profi = Profile.objects.all()
+        self.assertTrue(len(profi)>=0)              
         
  
