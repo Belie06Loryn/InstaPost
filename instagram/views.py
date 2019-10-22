@@ -18,7 +18,7 @@ def profile(request):
     current_user = request.user
     if request.method == 'POST':
         form = ProfileForm(request.POST,request.FILES,instance=request.user)
-        if form.is_valid() and upform.is_valid():
+        if form.is_valid():
             profile = form.save(commit=False)
             profile.user= current_user
             profile.save()
