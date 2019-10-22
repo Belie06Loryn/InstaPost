@@ -15,6 +15,16 @@ InstaPost is a web application based on the famous instagram site whereby the us
 - Run python3.6 manage.py runserver 
 - Access the application through `http://127.0.0.1:8000/`
 
+## BDD
+| BEHAVIOUR | INPUT | OUTPUT|
+|:------------|:--------|:-----------|
+|User wants to create an account| They navigate to the user login.|User logged in|
+|User wants to view all images that posted|They navigate the user to home page |view the images|
+|User wants to search for a user|enter username on search bar |the puser profile and all images that he/she post displayed|
+|User wants to view images he/she posted|go on his profile|all images in and bio displayed|
+|User wants to edit his/her profile|click on edit profile|the form displays|
+|User wants to like the pictures|click on like icon|likes incleased|
+|User wants to comment|click on comment input and post button|the comment diplayed under the picture|
 
 ## Known bugs
 No known errors if found drop a message on my profile
