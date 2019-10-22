@@ -13,7 +13,10 @@ class ProfileTestClass(TestCase):
     def tearDown(self):
         Follower.objects.all().delete()
    
+    def test_save(self):
+        self.profile.save_profile()
+        profile= Profile.objects.all()
+        self.assertTrue(len(profile)>=1) 
+
     
-               
-        
  
