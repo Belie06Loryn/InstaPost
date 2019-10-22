@@ -46,4 +46,10 @@ class CommentTestClass(TestCase):
         comments = Comment.objects.all()
         self.assertTrue(len(comments) >= 1)  
 
+    def test_upd(self):
+        comment = Comment.objects.filter(id=1)
+        comment.update(comment ='Art')
+        search = Comment.objects.filter(id=1)
+        self.assertNotEqual(search,'Art') 
+
     
