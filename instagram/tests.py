@@ -91,4 +91,10 @@ class FotoTestClass(TestCase):
         delete = Foto.objects.all()
         self.assertTrue(len(delete)>=0)   
 
+    def test_upd_pic(self):
+        image = Foto.objects.filter(id=1)
+        image.update(name ='lez.jpeg')
+        search = Foto.objects.filter(id=1)
+        self.assertNotEqual(search,'lez.jpeg')     
+        
     
