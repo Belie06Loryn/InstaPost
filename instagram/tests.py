@@ -97,4 +97,10 @@ class FotoTestClass(TestCase):
         search = Foto.objects.filter(id=1)
         self.assertNotEqual(search,'lez.jpeg')     
         
+    def test_pic_id(self):
+        self.image = Foto(image = 'Jam.jpeg', name ='Muriuki', caption ='jamesmoringaschoolcom',like = "2", comments=self.new_comment)
+        self.image.save_pic()
+        search = Foto.image_by_id(self.image.id)
+        self.assertNotEqual(search,self.image)    
+ 
     
