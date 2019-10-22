@@ -61,3 +61,27 @@ class CommentTestClass(TestCase):
     def tearDown(self):
         Comment.objects.all().delete()                
 
+class FotoTestClass(TestCase):
+
+    def setUp(self):
+        self.profile= Profile(image = 'Jam.jpeg', name ='Muriuki', email ='james@moringaschool.com',bio = 'hdeydfedf')
+        self.profile.save_profile()
+
+        self.new_comment = Comment(comment = 'Fun')
+        self.new_comment.save_comment()
+
+        self.new_photos= Foto(image = 'Jam.jpeg', name ='Muriuki', caption ='jamesmoringaschoolcom',like = "2", comments=self.new_comment)
+        self.new_photos.save_pic()
+
+    def tearDown(self):
+        Profile.objects.all().delete()
+        Comment.objects.all().delete()
+        Foto.objects.all().delete()       
+
+    def test_save_pick(self):
+        self.new_photos= Foto(image = 'Jam.jpeg', name ='Muriuki', caption ='jamesmoringaschoolcom',like = "2", comments=self.new_comment)
+        self.new_photos.save_pic()
+        picture = Foto.objects.all()
+        self.assertTrue(len(picture)>=1)
+
+  
