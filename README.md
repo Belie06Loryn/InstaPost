@@ -3,6 +3,8 @@
 ## Author
 https://github.com/Belie06Loryn
 
+## Description
+InstaPost is a web application based on the famous instagram site whereby the users of InstaPost can be able to signin and login also,Upoad pictures,Create profiles,view other peoples profiles,follow other users and see their pictures on their respective timelines and like a picture and leave a comment on it.
 
 ### Set-up and Installation
 - Clone the Repo using this command: cd git clone  [https://github.com/Belie06Loryn/InstaPost.git] $$ cd [InstaPost]
