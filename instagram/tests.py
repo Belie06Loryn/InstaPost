@@ -52,4 +52,12 @@ class CommentTestClass(TestCase):
         search = Comment.objects.filter(id=1)
         self.assertNotEqual(search,'Art') 
 
-    
+    def test_del(self):
+        self.comment.save_comment()
+        comments = self.comment.dele_comment()
+        comment = Comment.objects.all()
+        self.assertTrue(len(comment)<=0)
+
+    def tearDown(self):
+        Comment.objects.all().delete()                
+
