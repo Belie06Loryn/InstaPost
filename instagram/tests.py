@@ -40,4 +40,10 @@ class CommentTestClass(TestCase):
     def test_instance(self):
         self.assertTrue(self.comment,Comment)    
 
-   
+     # Testing Save Method
+    def test_save(self):
+        self.comment.save_comment()
+        comments = Comment.objects.all()
+        self.assertTrue(len(comments) >= 1)  
+
+    
